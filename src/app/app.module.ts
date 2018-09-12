@@ -16,6 +16,8 @@ import {SingleAppareilComponent} from './single-appareil/single-appareil.compone
 import {FourOhFourComponent} from './four-oh-four/four-oh-four.component';
 import {AuthGuardService} from './services/auth-gard.service';
 import { EditappareilComponent } from './editappareil/editappareil.component';
+import {UserService} from './services/user.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
     SingleAppareilComponent,
     FourOhFourComponent,
     EditappareilComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ const appRoutes: Routes = [
     AppareilService,
     AuthService,
     AuthGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
