@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppareilService} from './services/appareil.service';
+import { interval } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -8,18 +10,7 @@ import {AppareilService} from './services/appareil.service';
 })
 export class AppComponent implements OnInit {
   isAuth = false;
-
-  appareils: any[];
-
-  lastUpdate = new Promise((resolve, reject) => {
-    const date = new Date();
-    setTimeout(
-      () => {
-        resolve(date);
-      }, 2000
-    );
-  });
-
+  secondes: number;
 
   constructor(private appareilService: AppareilService) {
     setTimeout(
@@ -30,19 +21,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
-  }
-
-  onAllumer() {
-    this.appareilService.switchOnAll();
-    this.appareils[0].statut = 'éteint';
-  }
-
-  onEteindre() {
-    if(confirm('Sur d\'éteindre ?')) {
-      this.appareilService.switchOffAll();
-    } else {
-      return null;
-    }
+    const counter = interval(1000);
+    counter.subscribe(
+      (value) => {
+        this.secondes = value;
+      },
+      (error) => {
+        console.log('ERREUR : ' + error);
+      },
+      () => {
+        console.log('Interval finis');
+      }
+    );
   }
 }

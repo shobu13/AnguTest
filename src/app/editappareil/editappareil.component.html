@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <!--le #f sert à créer une référence à cet objet, habituellement, on affecte pas de valeur, mais dans ce cas précis, on y attribue la valeur ngForm pour pouvoir réutiliser le formulaire.-->
+      <div class="form-group">
+        <label for="name">
+          Nom de l'appareil
+        </label>
+        <input type="text" id="name" class="form-control" name="name" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="status">
+          État de l'appareil
+        </label>
+        <select id="status" class="form-control" name="status" [ngModel]="defaultOnOff">
+          <option value=true>Allumé</option>
+          <option value=false>Éteint</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+    </form>
+  </div>
+</div>

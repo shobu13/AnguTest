@@ -11,6 +11,7 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName: String = 'banane !';
   @Input() appareilStatus = false;
   @Input() index: number;
+  @Input() id: number;
 
   constructor(private appareilService: AppareilService) {
   }
@@ -37,4 +38,5 @@ export class AppareilComponent implements OnInit {
   onSwitch() {
     this.appareilService.swapOne(this.index);
   }
+
 }
